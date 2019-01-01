@@ -1,0 +1,22 @@
+{
+  "name": "year-in-pixels-node",
+  "version": "0.0.1",
+  "description": "NodeJS version of the app named 'Year In pixel'",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": {
+    "name": "Turzo_Ahsan",
+    "email": "turzo404@gmail.com",
+    "url": "https://www.linkedin.com/in/turzoahsan/"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.2",
+    "jade": "^1.11.0"
+  },
+  "engines": {
+    "node": "8.x"
+  }
+}

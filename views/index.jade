@@ -1,0 +1,82 @@
+extends ./layout
+
+block content
+  .container
+    .column
+      .header
+          h1 Year in Pixels <br/> v. NodeJS
+    .column
+      #pixels
+  .container
+    .column
+      .grid#moodGrid
+        div.item
+          span
+          div.days
+            - each _, i in Array(31)
+              span.day= i+1
+        - each _, i in Array(grid[prop])
+          - for (var prop in grid)
+            div.item.month(data-month="#{prop}")
+              span= prop[0]
+              - each _, i in Array(grid[prop])
+                a(href="#", data-mood="0")
+    .column
+      .interface
+        .mood-form
+          h2 how are you feeling today?
+          form(id="submitMood", action="")
+            - for (var prop in moodOptions)
+              div
+                input(type="radio", class="mood-#{prop}" id="#{moodOptions[prop]}", name="dayMood", value="#{prop}")
+                label(for="#{moodOptions[prop]}")
+          #message
+            p 
+              | Your day has been
+              |  
+              u amazing
+              | .
+        div#chart
+          div.ct-chart
+        div#quoteOfTheDay
+          p Loading...
+        div#footer
+          ul.menu
+            li
+              a(href="#" data-menu="import") Import
+            li
+              a(href="#" data-menu="export") Export            
+            li
+              a(href="#" data-menu="clear") Clear data
+            li
+              a(href="#" data-menu="about") About
+          
+            
+
+  #menu
+    #importDialog.dialog
+      a.close(href="#") X
+      h3 Import a mood calendar
+      p Paste the code copied from the export tool and click the import button.
+      textarea(id="importMoodText")
+      button(id="importMoodBtn") Import
+    #exportDialog.dialog
+      a.close(href="#") X
+      h3 Export a mood calendar
+      p Copy the following text and use the import tool to import it.
+      textarea(id="exportMoodText", onclick="this.focus();this.select()", readonly="readonly")
+    #aboutDialog.dialog
+      a.close(href="#") X
+      h3 Hello there.
+      p This is a nodejs replica of the mobile phone app named 'Year in Pixels' by Teo Vogel.
+      p This tool was made to keep track of your mood during the entire year, using pixels. You can load this page every day and select how you're feeling. The tool will keep track of your mood and give you a visual for how you've felt during the year.
+      p If you use different browsers or computers, you can import/export your calendar too.
+      p Credits to Teo Vogel, the original creator of the mobile app.
+      h3 About the author
+      p
+        | My name is Turzo Ahsan Sami         
+        | and I enjoy making fun stuff using javascript.
+      p Thanks for passing by.
+      
+  script(type='text/javascript').
+    var moodOptions = !{JSON.stringify(moodOptions)}
